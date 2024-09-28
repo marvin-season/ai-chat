@@ -1,0 +1,13 @@
+{
+  "name": "ai-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm --filter @ai-chat/frontend --filter @ai-chat/backend --filter @ai-chat/chat --parallel dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
