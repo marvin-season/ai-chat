@@ -1,4 +1,4 @@
-import { SSEMessageGenerator } from "@marvin/react-ai";
+import { SSEMessageGenerator } from "@ai-chat/chat";
 
 export const chatWX = async (query) => {
   const response = await fetch("/api/apps/chat", {

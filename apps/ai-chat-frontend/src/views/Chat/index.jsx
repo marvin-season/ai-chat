@@ -1,4 +1,4 @@
-import {Chat} from "@marvin/react-ai";
+import {Chat} from "@ai-chat/chat";
 import {useChatApproach, useChatPage} from "./hooks/index.js";
 import React from "react";
 import ConversationBar from "./components/ConversationBar.jsx";

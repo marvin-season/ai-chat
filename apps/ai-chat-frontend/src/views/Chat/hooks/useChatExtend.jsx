@@ -1,4 +1,4 @@
-import { useChat } from "@marvin/react-ai";
+import { useChat } from "@ai-chat/chat";
 import React, { useMemo, useState } from "react";
 import { Close } from "@icon-park/react";
 import { Attachments } from "../components/Attachments.jsx";

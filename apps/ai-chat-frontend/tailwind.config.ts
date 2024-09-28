@@ -1,4 +1,4 @@
-import * as T from '@marvin/tailwind-config'
+import * as T from '@ai-chat/tailwind-config'
 
 export default {
     ...T,

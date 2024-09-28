@@ -1,1 +1,1 @@
-export { default } from "@marvin/tailwind-config/postcss.config.js";
+export { default } from "@ai-chat/tailwind-config/postcss.config.js";

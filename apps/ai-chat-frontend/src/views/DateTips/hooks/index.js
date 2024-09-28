@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import {request} from "@marvin/shared";
+import { request } from "../../../utils/request.js";
 
 export const useDateTips = () => {
     const [editingId, setEditingId] = useState(undefined)
