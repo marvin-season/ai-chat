@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "pnpm --filter @ai-chat/backend setup",
     "dev": "pnpm --filter @ai-chat/frontend --filter @ai-chat/backend --filter @ai-chat/chat --parallel dev"
   },
   "keywords": [],
