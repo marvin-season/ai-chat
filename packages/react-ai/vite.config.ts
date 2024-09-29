@@ -30,12 +30,7 @@ export default defineConfig({
     },
     copyPublicDir: false,
     rollupOptions: {
-      external: (id) => {
-        return [
-          "react", "react/jsx-runtime", "@uiw/react-markdown-preview",
-          "nanoid", "use-immer", "moment", "react-dom", "react-dom/client", "ahooks/es", "ahooks", "lodash"
-        ].includes(id);
-      },
+      external: (id) => !id.startsWith(".") && !id.startsWith("/") && !id.startsWith("@/"),
       input: Object.fromEntries(
         glob.sync("lib/**/*.{ts,tsx}").map(file => [
           // The name of the entry point
