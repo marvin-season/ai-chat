@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  content: ['./src/**/*.tsx', './src/**/*.jsx', 'node_modules/@marvin/react-ai/**/*.tsx'],
+  content: ['./src/**/*.tsx', './src/**/*.jsx', 'node_modules/@ai-chat/chat/**/*.tsx'],
   theme: {
     extend: {},
   },
