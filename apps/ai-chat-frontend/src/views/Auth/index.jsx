@@ -16,7 +16,7 @@ const Auth = ({ setIsAuthed }) => {
         alert("Invalid token");
       }
     }}>
-      <input placeholder={"please enter the secret code and press the enter key to continue ..."} className={"text-blue-600 border px-4 w-[40%] h-12 rounded-lg placeholder:text-sm placeholder:text-gray-400"} type="text" value={token} onChange={(e) => {
+      <input placeholder={"please enter the secret code and press the enter key to continue ..."} className={"text-blue-600 border px-4 w-[40%] h-12 rounded-lg placeholder:text-xs placeholder:text-gray-400"} type="text" value={token} onChange={(e) => {
         setToken(e.target.value);
       }} />
     </form>

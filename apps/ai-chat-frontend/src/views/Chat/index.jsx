@@ -20,13 +20,13 @@ export default function ChatPage() {
 
     return <>
         <div className={"bg-gradient-to-r from-green-200  to-blue-200  h-screen flex flex-col items-center gap-4"}>
-            <div className={"px-4 rounded-b-lg h-12 bg-white w-full flex justify-end items-center"}>
+            <div className={"px-4 h-12 bg-white w-full flex justify-end items-center"}>
                 <Logout className={"cursor-pointer"} onClick={() => {
                     sessionStorage.removeItem("token");
                     window.location.reload();
                 }}/>
             </div>
-            <div className={"flex-grow bg-[#fffa] rounded-[16px] w-[100%] p-8 flex gap-4 justify-center"}>
+            <div className={"flex-grow bg-[#fffa] w-[100%] p-8 flex gap-4 justify-center"}>
                 <div className={"p-4 border rounded-xl bg-gray-100 b flex flex-col w-[300px]"}>
                     <ConversationBar
                         checkoutConversation={chatProps.checkoutConversation}

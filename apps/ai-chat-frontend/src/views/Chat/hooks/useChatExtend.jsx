@@ -1,6 +1,6 @@
 import { useChat } from "@ai-chat/chat";
-import React, { useMemo, useState } from "react";
-import { Close } from "@icon-park/react";
+import { useMemo, useState } from "react";
+import { CircleFour } from "@icon-park/react";
 import { Attachments } from "../components/Attachments.jsx";
 
 const useChatExtend = ({ approachHandle, fetchConversations, conversations = [] }) => {
@@ -40,12 +40,13 @@ const useChatExtend = ({ approachHandle, fetchConversations, conversations = [] 
   const AssistantMessageLayout = ({ message, onRegenerate }) => {
     return <>
       <div className={"flex"}>
-        <div className={"bg-gray-200 py-2 px-4 flex rounded-lg"}>
+        <div className={"bg-gray-200 py-2 px-4 flex rounded-lg text-xs"}>
           {message.content}
         </div>
         <div className={"cursor-pointer"} onClick={() => {
           onRegenerate?.(message);
-        }}>RE
+        }}>
+          <CircleFour/>
         </div>
       </div>
     </>;
@@ -60,7 +61,7 @@ const useChatExtend = ({ approachHandle, fetchConversations, conversations = [] 
         </div>
 
         <div className={"flex"}>
-          <div className={"bg-gray-400 text-white py-2 px-4 rounded-lg"}>{message.content}</div>
+          <div className={"bg-gray-400 text-white py-2 px-4 rounded-lg text-xs"}>{message.content}</div>
         </div>
       </div>
 
