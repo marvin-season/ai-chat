@@ -1,25 +1,69 @@
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
-const useSSR = () => {
-    const [ssr, setSsr] = useState(<div>hi</div>);
+const useContent = () => {
+    const [content, setContent] = useState("");
+    const transformStream = useMemo(() => {
+        return new TransformStream();
+    }, []);
+
+    const readableStream = useMemo(() => {
+        return transformStream.readable;
+    }, [transformStream]);
+
+    const writer = useMemo(() => {
+        const writableStream = transformStream.writable;
+        return !writableStream.locked && writableStream.getWriter();
+    }, [transformStream]);
+
+
+    const readContent = useCallback(async () => {
+        console.log("readableStream", readableStream);
+        if (readableStream.locked) {
+            return;
+        }
+        // 在可写流一端写入数据
+        // 从可读流一端读取数据
+        for await (const readerElement of readableStream) {
+            console.log(readerElement);
+            setContent(prevState => {
+                return <>
+                    {prevState}{readerElement}
+                </>;
+            });
+        }
+    }, [readableStream]);
+
+    useEffect(() => {
+        readContent().then();
+        return () => {
+        };
+    }, [readContent]);
 
     return {
-        ssr,
-        setSsr,
+        content,
+        writer,
+    };
+};
+
+
+const useSSR = () => {
+    const content = useContent();
+
+    return {
+        ...content,
     };
 };
 
 export default function SSR() {
-    const { ssr, setSsr } = useSSR();
+    const { content, writer } = useSSR();
 
     return (
         <div>
-            {ssr}
-            <button onClick={() => {
+            {content}
+            <button onClick={async () => {
                 const newSsr = <div>new ssr</div>;
-                setSsr(prevState => {
-                    return <>{prevState}{newSsr}</>;
-                });
+                writer.write(newSsr).then();
+
             }}>btn
             </button>
         </div>
