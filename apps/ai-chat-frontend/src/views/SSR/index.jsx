@@ -56,13 +56,16 @@ const useSSR = () => {
 
 export default function SSR() {
     const { content, writer } = useSSR();
+    const { content: content2, writer: writer2 } = useSSR();
 
     return (
         <div>
             {content}
+            {content2}
             <button onClick={async () => {
                 const newSsr = <div>new ssr</div>;
                 writer.write(newSsr).then();
+                writer2.write(newSsr).then();
 
             }}>btn
             </button>
