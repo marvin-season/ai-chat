@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const useContent = () => {
     const [content, setContent] = useState("");
@@ -56,16 +56,33 @@ const useSSR = () => {
 
 export default function SSR() {
     const { content, writer } = useSSR();
+    const inputRef = useRef();
 
     return (
-        <div>
-            {content}
-            <button onClick={async () => {
-                const newSsr = <div>new ssr</div>;
-                writer.write(newSsr).then();
+        <div className={"flex flex-col gap-4"}>
+            <div className={"flex-grow border rounded-lg p-4"}>
+                {content}
+            </div>
 
-            }}>btn
-            </button>
+            <form action="#" onSubmit={e => {
+                e.preventDefault();
+                const prompt = inputRef.current.value;
+                const content = <div>
+                    <span className={"font-bold"}>USER: </span>
+                    <span>{prompt}</span>
+                </div>;
+                writer.write(content).then();
+
+                setTimeout(() => {
+                    writer.write(<div>
+                        <span className={"font-bold"}>BOT: </span>
+                        <span className={"italic"}>{prompt}</span>
+                    </div>).then();
+                }, 1000);
+            }}>
+
+                <input ref={inputRef} className={"border h-12 w-full rounded-lg"} />
+            </form>
         </div>
     );
 }
