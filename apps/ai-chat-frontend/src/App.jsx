@@ -1,6 +1,7 @@
 import Chat from "./views/Chat/index.jsx";
 import Auth from "./views/Auth/index.jsx";
 import { useState } from "react";
+import SSR from "./views/SSR/index.jsx";
 
 
 const App = () => {
@@ -8,9 +9,10 @@ const App = () => {
   const [isAuthed, setIsAuthed] = useState(false);
 
   return <>
-    {
-      isAuthed ? <Chat /> : <Auth setIsAuthed={setIsAuthed} />
-    }
+    <SSR/>
+    {/*{*/}
+    {/*  isAuthed ? <Chat /> : <Auth setIsAuthed={setIsAuthed} />*/}
+    {/*}*/}
   </>;
 };
 
