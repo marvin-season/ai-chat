@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import BotMessage from "./components/BotMessage.jsx";
+import UserMessage from "./components/UserMessage.jsx";
 
-const useContent = () => {
-    const [content, setContent] = useState("");
+const useWriteableHTML = () => {
+    const [HTMLList, setHTMLList] = useState([]);
     const transformStream = useMemo(() => {
         return new TransformStream();
     }, []);
@@ -17,7 +19,6 @@ const useContent = () => {
 
 
     const readContent = useCallback(async () => {
-        console.log("readableStream", readableStream);
         if (readableStream.locked) {
             return;
         }
@@ -25,10 +26,11 @@ const useContent = () => {
         // 从可读流一端读取数据
         for await (const readerElement of readableStream) {
             console.log(readerElement);
-            setContent(prevState => {
-                return <>
-                    {prevState}{readerElement}
-                </>;
+            setHTMLList(prevState => {
+                if(prevState.at(-1)?.props.id === readerElement.props.id) {
+                    return prevState.slice(0, -1).concat(readerElement);
+                }
+                return prevState.concat(readerElement);
             });
         }
     }, [readableStream]);
@@ -40,44 +42,29 @@ const useContent = () => {
     }, [readContent]);
 
     return {
-        content,
+        html: HTMLList,
         writer,
     };
 };
 
 
-const useSSR = () => {
-    const content = useContent();
-
-    return {
-        ...content,
-    };
-};
 
 export default function SSR() {
-    const { content, writer } = useSSR();
+    const { html: HTMLList, writer } = useWriteableHTML();
     const inputRef = useRef();
 
     return (
         <div className={"flex flex-col gap-4"}>
             <div className={"flex-grow border rounded-lg p-4"}>
-                {content}
+                {HTMLList.map(html => html)}
             </div>
 
             <form action="#" onSubmit={e => {
                 e.preventDefault();
                 const prompt = inputRef.current.value;
-                const content = <div>
-                    <span className={"font-bold"}>USER: </span>
-                    <span>{prompt}</span>
-                </div>;
-                writer.write(content).then();
-
-                setTimeout(() => {
-                    writer.write(<div>
-                        <span className={"font-bold"}>BOT: </span>
-                        <span className={"italic"}>{prompt}</span>
-                    </div>).then();
+                writer.write(<UserMessage prompt={prompt} id={1}/>).then();
+                setInterval(() => {
+                    writer.write(<BotMessage prompt={prompt} id={2}/>).then();
                 }, 1000);
             }}>
 
