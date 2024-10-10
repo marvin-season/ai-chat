@@ -26,8 +26,8 @@ export default function ChatPage() {
                     window.location.reload();
                 }}/>
             </div>
-            <div className={"flex-grow bg-[#fffa] w-[100%] p-8 flex gap-4 justify-center"}>
-                <div className={"p-4 border rounded-xl bg-gray-100 b flex flex-col w-[300px]"}>
+            <div className={"flex-grow bg-[#fff] w-[100%] p-8 flex gap-4 justify-center"}>
+                <div className={"p-4 border rounded-xl bg-gray-400 b flex flex-col w-[300px]"}>
                     <ConversationBar
                         checkoutConversation={chatProps.checkoutConversation}
                         fetchConversations={fetchConversations}
