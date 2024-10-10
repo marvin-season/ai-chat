@@ -1,5 +1,14 @@
 @import '@ai-chat/tailwind-config/main.css';
 
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #f60808, #cdf395, #0813f3);
+    border-radius: 4px;
+}
 
 @layer utilities {
     .scrollbar-thin::-webkit-scrollbar {
