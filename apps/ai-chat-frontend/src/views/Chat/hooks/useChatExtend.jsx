@@ -40,7 +40,7 @@ const useChatExtend = ({ approachHandle, fetchConversations, conversations = [] 
   const AssistantMessageLayout = ({ message, onRegenerate }) => {
     return <>
       <div className={"flex"}>
-        <div className={"bg-gray-200 py-2 px-4 flex rounded-lg text-xs"}>
+        <div className={"bg-gray-200 py-2 px-4 flex rounded-lg text-[15px] leading-8"}>
           {message.content}
         </div>
         <div className={"cursor-pointer"} onClick={() => {
@@ -61,7 +61,7 @@ const useChatExtend = ({ approachHandle, fetchConversations, conversations = [] 
         </div>
 
         <div className={"flex"}>
-          <div className={"bg-gray-400 text-white py-2 px-4 rounded-lg text-xs"}>{message.content}</div>
+          <div className={"bg-gray-400 text-white py-2 px-4 rounded-lg text-[15px] leading-8"}>{message.content}</div>
         </div>
       </div>
 
