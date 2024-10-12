@@ -4,7 +4,7 @@ import moment from "moment";
 import { ActionParams, ChatProps, Message, MultiModalContent } from "@/types";
 import React, { useEffect, useMemo, useState } from "react";
 import { ChatActionType, ChatStatus } from "@/constant";
-import { SSEMessageGenerator } from "@/utils";
+import { sleep, SSEMessageGenerator } from "@/utils";
 
 const format = "YYYY-MM-DD HH:mm:ss";
 
@@ -80,6 +80,7 @@ export const useChat = (invokeHandle: HandleProps, config: ConfigProps = {}): Ch
       for await (const message of SSEMessageGenerator<Message & {
         content: string | MultiModalContent;
       }>(response)) {
+        await sleep(0)
         if (message.event === "conversation-start") {
           setChatStatus(ChatStatus.Typing);
           invokeHandle.onConversationStart?.(message);
