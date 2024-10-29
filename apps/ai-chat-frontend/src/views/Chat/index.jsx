@@ -43,7 +43,7 @@ export default function ChatPage() {
                 />
             </div>
         </dialog>
-        <div className={"bg-gradient-to-r from-green-300 to-blue-500  h-screen flex flex-col items-center gap-[1px]"}>
+        <div className={"bg-white  h-screen flex flex-col items-center gap-[1px]"}>
             <div className={"flex-shrink-0 px-4 h-12 bg-white w-full flex justify-between items-center gap-4"}>
                 <MenuFoldOne className={"cursor-pointer"} onClick={() => {
                     dialogRef.current.showModal();
@@ -53,14 +53,13 @@ export default function ChatPage() {
                     window.location.reload();
                 }} />
             </div>
-            <div className={"flex-grow bg-[#fff] w-[100%] p-8 flex gap-4 justify-center overflow-y-scroll"}>
-                <div className={"flex-grow rounded-xl"}>
-                    <Chat {...chatProps} />
-                </div>
-                {/*<div className={"flex-1 border rounded-xl p-4 text-white bg-gray-400 flex flex-col"}>*/}
-                {/*    <EvalPanel state={approachHandle.state}/>*/}
-                {/*</div>*/}
+            <div className={"w-[100%] flex-grow rounded-xl overflow-y-scroll"}>
+                <Chat {...chatProps} />
             </div>
+            {/*<div className={"flex-1 border rounded-xl p-4 text-white bg-gray-400 flex flex-col"}>*/}
+            {/*    <EvalPanel state={approachHandle.state}/>*/}
+            {/*</div>*/}
+
         </div>
 
     </>;
