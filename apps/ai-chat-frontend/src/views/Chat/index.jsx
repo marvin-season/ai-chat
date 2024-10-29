@@ -43,24 +43,22 @@ export default function ChatPage() {
                 />
             </div>
         </dialog>
-        <div className={"bg-white  h-screen flex flex-col items-center gap-[1px]"}>
-            <div className={"flex-shrink-0 px-4 h-12 bg-white w-full flex justify-between items-center gap-4"}>
-                <MenuFoldOne className={"cursor-pointer"} onClick={() => {
-                    dialogRef.current.showModal();
-                }} />
-                <Logout className={"cursor-pointer"} onClick={() => {
-                    sessionStorage.removeItem("token");
-                    window.location.reload();
-                }} />
-            </div>
-            <div className={"w-[100%] flex-grow rounded-xl overflow-y-scroll"}>
-                <Chat {...chatProps} />
-            </div>
+        <div className={"fixed top-0 flex-shrink-0 px-4 h-12 bg-white w-full flex justify-between items-center gap-4"}>
+            <MenuFoldOne className={"cursor-pointer"} onClick={() => {
+                dialogRef.current.showModal();
+            }} />
+            <Logout className={"cursor-pointer"} onClick={() => {
+                sessionStorage.removeItem("token");
+                window.location.reload();
+            }} />
+        </div>
+        <div className={"h-[100dvh] pt-6 w-[100%] flex-grow rounded-xl overflow-y-scroll"}>
+            <Chat {...chatProps} />
+        </div>
             {/*<div className={"flex-1 border rounded-xl p-4 text-white bg-gray-400 flex flex-col"}>*/}
             {/*    <EvalPanel state={approachHandle.state}/>*/}
             {/*</div>*/}
 
-        </div>
 
     </>;
 }
